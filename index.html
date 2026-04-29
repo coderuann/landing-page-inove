@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soluções Industriais - i9+ Baterias</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo-link">
+                <!-- Fallback to text if the image fails to load, but using the real URL from the website -->
+                <img src="https://inovemais.ind.br/images/logo-i9+.png" alt="Inove Mais Logo" class="logo-image"
+                    onerror="this.outerHTML='<h2 class=\'logo-text\'>i9+ Baterias</h2>'">
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <h1>Potencialize sua Operação com Nossas Soluções Industriais</h1>
+                    <p>Oferecemos tecnologia de ponta e eficiência para elevar a performance do seu negócio. Preencha o
+                        formulário e fale com um de nossos especialistas.</p>
+                </div>
+
+                <div class="hero-form-wrapper">
+                    <div class="contact-form-container">
+                        <h2>Fale com um Especialista</h2>
+                        <form id="leadForm" class="contact-form">
+                            <div class="form-group">
+                                <label for="nome">Nome Completo *</label>
+                                <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required>
+                                <span class="error-msg" id="nomeError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">E-mail Corporativo ou Pessoal *</label>
+                                <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+                                <span class="error-msg" id="emailError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="telefone">Telefone / WhatsApp *</label>
+                                <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000"
+                                    maxlength="15" required>
+                                <span class="error-msg" id="telefoneError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Tipo de Contato *</label>
+                                <div class="radio-group">
+                                    <label class="radio-label">
+                                        <input type="radio" name="tipoContato" value="Empresa" required>
+                                        Empresa
+                                    </label>
+                                    <label class="radio-label">
+                                        <input type="radio" name="tipoContato" value="Pessoa Física">
+                                        Pessoa Física
+                                    </label>
+                                </div>
+                            </div>
+
+                            <button type="submit" id="submitBtn" class="cta-button">Solicitar Contato</button>
+                        </form>
+
+                        <div id="successMessage" class="form-success-message" style="display: none;">
+                            <p><strong>Sucesso!</strong> Seus dados foram enviados. Nossa equipe entrará em contato em
+                                breve.</p>
+                        </div>
+                        <div id="errorMessage" class="form-error-message" style="display: none;">
+                            <p>Ocorreu um erro ao enviar os dados. Por favor, tente novamente.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Inove Mais. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
