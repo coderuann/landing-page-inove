@@ -8,8 +8,6 @@ Landing page estática para captação de leads da **i9+ Baterias**, com formul�
 
 **🔗 Em produção:** https://coderuann.github.io/landing-page-inove/
 
-![Preview](preview.png)
-
 ---
 
 ## Sobre
