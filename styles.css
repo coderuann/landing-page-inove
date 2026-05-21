@@ -37,14 +37,23 @@ body {
     left: 0;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     padding: 20px;
+    padding-left: 40px;
     z-index: 1000;
 }
 
+.main-header .container {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
 .logo-image {
-    height: 50px;
+    height: 65px;
     width: auto;
 }
 
@@ -106,6 +115,7 @@ body {
 @media (min-width: 992px) {
     .hero-content {
         text-align: left;
+        margin-left: -20px;
     }
 }
 
