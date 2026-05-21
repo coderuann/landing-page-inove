@@ -1,5 +1,6 @@
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwoP7RbIHnxaQjHiQAZ8h6GVyUgL3DaC72_5xa2zSayTBwS1YIFx2Yb26FVWk3i8FT4/exec";
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Set current year in footer
     document.getElementById('currentYear').textContent = new Date().getFullYear();
 
     const form = document.getElementById('leadForm');
@@ -11,16 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const successMessage = document.getElementById('successMessage');
     const errorMessage = document.getElementById('errorMessage');
 
-    // Email Regex Validation
     const validateEmail = (email) => {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(String(email).toLowerCase());
     };
 
-    // Phone Mask (BR: (XX) XXXXX-XXXX or (XX) XXXX-XXXX)
     const maskPhone = (value) => {
         if (!value) return "";
-        value = value.replace(/\D/g, ''); // Remove non-digits
+        value = value.replace(/\D/g, '');
         if (value.length > 11) value = value.slice(0, 11);
 
         if (value.length > 2) {
@@ -36,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
         e.target.value = maskPhone(e.target.value);
     });
 
-    // Real-time validation
     const showError = (input, errorId, message) => {
         const errorSpan = document.getElementById(errorId);
         if (message) {
@@ -65,11 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Form Submit Handler
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        // Check if there are invalid fields
         if (!validateEmail(emailInput.value)) {
             showError(emailInput, 'emailError', 'Por favor, insira um e-mail válido.');
             emailInput.focus();
@@ -83,45 +79,37 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Get form data
-        const formData = new FormData(form);
-        const data = {
-            nome: formData.get('nome'),
-            email: formData.get('email'),
-            telefone: formData.get('telefone'),
-            tipoContato: formData.get('tipoContato')
-        };
+        const nome = nomeInput.value.trim();
+        const email = emailInput.value.trim();
+        const telefone = telefoneInput.value.trim();
+        const tipoContato = document.querySelector('input[name="tipoContato"]:checked')?.value || "";
 
-        // UI Feedback
+        if (!tipoContato) {
+            errorMessage.style.display = 'block';
+            return;
+        }
+
+        const payload = { nome, email, telefone, tipoContato };
+
         submitBtn.disabled = true;
         submitBtn.textContent = 'Enviando...';
         successMessage.style.display = 'none';
         errorMessage.style.display = 'none';
 
-        // REPLACE THIS URL WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbwoP7RbIHnxaQjHiQAZ8h6GVyUgL3DaC72_5xa2zSayTBwS1YIFx2Yb26FVWk3i8FT4/exec';
-
         try {
-            // Note: Use mode: 'no-cors' for Google Apps Script to avoid CORS errors from browser,
-            // but keep in mind that fetch will return an opaque response where you can't read response.ok
-            // For full JSON response, the Apps Script needs to handle CORS properly.
-            // Using a standard POST with application/json or x-www-form-urlencoded
-
-            // Because Google Apps Script standard doPost can be tricky with application/json CORS,
-            // we will send it as plain text and parse it there, or handle CORS in Apps Script.
-            const response = await fetch(scriptURL, {
-                method: 'POST',
+            await fetch(GOOGLE_SCRIPT_URL, {
+                method: "POST",
+                mode: "no-cors",
                 headers: {
-                    'Content-Type': 'text/plain;charset=utf-8',
+                    "Content-Type": "application/json"
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(payload)
             });
 
-            // Assuming success if fetch didn't throw a network error
             successMessage.style.display = 'block';
             form.reset();
         } catch (error) {
-            console.error('Erro ao enviar!', error.message);
+            console.error('Erro ao enviar!', error);
             errorMessage.style.display = 'block';
         } finally {
             submitBtn.disabled = false;
