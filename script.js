@@ -1,4 +1,4 @@
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwoP7RbIHnxaQjHiQAZ8h6GVyUgL3DaC72_5xa2zSayTBwS1YIFx2Yb26FVWk3i8FT4/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzaK-OqogZqd90nBUO8X8T9XPo8i_1sqJ9CM2wcpwwVpM6SDH_tGKViw5S0QkHyZ8PC/exec";
 
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('currentYear').textContent = new Date().getFullYear();
