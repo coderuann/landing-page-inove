@@ -53,7 +53,7 @@ body {
 }
 
 .logo-image {
-    height: 65px;
+    height: 95px;
     width: auto;
 }
 
@@ -116,6 +116,11 @@ body {
     .hero-content {
         text-align: left;
         margin-left: -20px;
+        align-self: start;
+        min-height: calc(100vh - 160px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 }
 
@@ -202,6 +207,39 @@ body {
 
 .form-group input.invalid {
     border-color: var(--error-color);
+}
+
+.form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    appearance: none;
+}
+
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 2px rgba(0, 82, 155, 0.2);
+}
+
+.form-group select.invalid {
+    border-color: var(--error-color);
+}
+
+#empresaFields {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 .error-msg {

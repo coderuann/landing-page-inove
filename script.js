@@ -7,7 +7,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const nomeInput = document.getElementById('nome');
     const emailInput = document.getElementById('email');
     const telefoneInput = document.getElementById('telefone');
+    const empresaFields = document.getElementById('empresaFields');
+    const nomeEmpresaInput = document.getElementById('nomeEmpresa');
+    const segmentoInput = document.getElementById('segmento');
+    const motivoContatoInput = document.getElementById('motivoContato');
+    const origemLeadInput = document.getElementById('origemLead');
     const submitBtn = document.getElementById('submitBtn');
+
+    document.querySelectorAll('input[name="tipoContato"]').forEach((radio) => {
+        radio.addEventListener('change', (e) => {
+            if (e.target.value === 'Empresa') {
+                empresaFields.style.display = 'block';
+            } else {
+                empresaFields.style.display = 'none';
+                nomeEmpresaInput.value = '';
+                segmentoInput.value = '';
+                showError(nomeEmpresaInput, 'nomeEmpresaError', '');
+                showError(segmentoInput, 'segmentoError', '');
+            }
+        });
+    });
 
     const successMessage = document.getElementById('successMessage');
     const errorMessage = document.getElementById('errorMessage');
@@ -83,13 +102,49 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = emailInput.value.trim();
         const telefone = telefoneInput.value.trim();
         const tipoContato = document.querySelector('input[name="tipoContato"]:checked')?.value || "";
+        const nomeEmpresa = document.getElementById('nomeEmpresa').value.trim();
+        const segmento = document.getElementById('segmento').value;
+        const motivoContato = document.getElementById('motivoContato').value;
+        const origemLead = document.getElementById('origemLead').value;
 
         if (!tipoContato) {
             errorMessage.style.display = 'block';
             return;
         }
 
-        const payload = { nome, email, telefone, tipoContato };
+        if (tipoContato === 'Empresa' && nomeEmpresa === '') {
+            showError(nomeEmpresaInput, 'nomeEmpresaError', 'Informe o nome da empresa.');
+            nomeEmpresaInput.focus();
+            return;
+        } else {
+            showError(nomeEmpresaInput, 'nomeEmpresaError', '');
+        }
+
+        if (tipoContato === 'Empresa' && segmento === '') {
+            showError(segmentoInput, 'segmentoError', 'Selecione o segmento da empresa.');
+            segmentoInput.focus();
+            return;
+        } else {
+            showError(segmentoInput, 'segmentoError', '');
+        }
+
+        if (motivoContato === '') {
+            showError(motivoContatoInput, 'motivoContatoError', 'Selecione o motivo do contato.');
+            motivoContatoInput.focus();
+            return;
+        } else {
+            showError(motivoContatoInput, 'motivoContatoError', '');
+        }
+
+        if (origemLead === '') {
+            showError(origemLeadInput, 'origemLeadError', 'Selecione como nos conheceu.');
+            origemLeadInput.focus();
+            return;
+        } else {
+            showError(origemLeadInput, 'origemLeadError', '');
+        }
+
+        const payload = { nome, email, telefone, tipoContato, nomeEmpresa, segmento, motivoContato, origemLead };
 
         submitBtn.disabled = true;
         submitBtn.textContent = 'Enviando...';
@@ -108,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             successMessage.style.display = 'block';
             form.reset();
+            document.getElementById('empresaFields').style.display = 'none';
         } catch (error) {
             console.error('Erro ao enviar!', error);
             errorMessage.style.display = 'block';

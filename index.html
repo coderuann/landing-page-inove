@@ -64,6 +64,56 @@
                                 </div>
                             </div>
 
+                            <div id="empresaFields" style="display: none;">
+                                <div class="form-group">
+                                    <label for="nomeEmpresa">Nome da Empresa *</label>
+                                    <input type="text" id="nomeEmpresa" name="nomeEmpresa" placeholder="Nome da sua empresa">
+                                    <span class="error-msg" id="nomeEmpresaError"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="segmento">Segmento da Empresa *</label>
+                                    <select id="segmento" name="segmento">
+                                        <option value="">Selecione o segmento...</option>
+                                        <option value="Indústria">Indústria</option>
+                                        <option value="Transporte">Transporte</option>
+                                        <option value="Construção">Construção</option>
+                                        <option value="Varejo">Varejo</option>
+                                        <option value="Outros">Outros</option>
+                                    </select>
+                                    <span class="error-msg" id="segmentoError"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="motivoContato">Motivo do Contato *</label>
+                                <select id="motivoContato" name="motivoContato">
+                                    <option value="">Selecione o motivo...</option>
+                                    <option value="Orçamento">Orçamento</option>
+                                    <option value="Suporte Técnico">Suporte Técnico</option>
+                                    <option value="Parceria Comercial">Parceria Comercial</option>
+                                    <option value="Outros">Outros</option>
+                                </select>
+                                <span class="error-msg" id="motivoContatoError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="origemLead">Como nos Conheceu? *</label>
+                                <select id="origemLead" name="origemLead">
+                                    <option value="">Selecione uma opção...</option>
+                                    <option value="Google">Google</option>
+                                    <option value="Instagram">Instagram</option>
+                                    <option value="Facebook">Facebook</option>
+                                    <option value="LinkedIn">LinkedIn</option>
+                                    <option value="TikTok">TikTok</option>
+                                    <option value="YouTube">YouTube</option>
+                                    <option value="Site Institucional">Site Institucional</option>
+                                    <option value="Indicação">Indicação de amigo/colega</option>
+                                    <option value="Outros">Outros</option>
+                                </select>
+                                <span class="error-msg" id="origemLeadError"></span>
+                            </div>
+
                             <button type="submit" id="submitBtn" class="cta-button">Solicitar Contato</button>
                         </form>
 
